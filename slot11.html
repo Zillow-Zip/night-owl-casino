@@ -1,0 +1,13 @@
+<!DOCTYPE html><html><body style="background:black;color:gold;text-align:center">
+<h1>🎰 SLOT 11</h1>
+<div id="r" style="font-size:50px;margin:20px"></div>
+<button onclick="spin()">SPIN</button>
+<script>
+let s=["🍒","💎","7️⃣","🦉","🔥"];
+function spin(){
+ let r1=s[Math.random()*s.length|0];
+ let r2=s[Math.random()*s.length|0];
+ let r3=s[Math.random()*s.length|0];
+ document.getElementById("r").innerText=r1+" "+r2+" "+r3;
+}
+</script></body></html>

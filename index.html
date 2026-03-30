@@ -1,0 +1,13 @@
+<!DOCTYPE html><html><body style="background:black;color:gold;text-align:center">
+<script>if(!localStorage.getItem("auth"))location="/login.html"</script>
+<h1>🦉 Night Owl Casino</h1>
+<div onclick="go('fish.html')">🐟 Fish</div>
+<div onclick="go('chat.html')">💬 Chat</div>
+<h2>Slots</h2>
+<div id="slots"></div>
+<script>
+function go(p){location=p}
+let c="";
+for(let i=1;i<=20;i++){c+=`<div onclick="go('slots/slot${i}.html')">Slot ${i}</div>`}
+document.getElementById("slots").innerHTML=c;
+</script></body></html>

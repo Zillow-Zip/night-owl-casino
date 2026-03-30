@@ -1,0 +1,14 @@
+<!DOCTYPE html><html><body style="background:black;color:white">
+<div id="chat" style="height:300px;overflow:auto"></div>
+<input id="m"><button onclick="send()">Send</button>
+<script src="/socket.io/socket.io.js"></script>
+<script>
+let s=io();
+function send(){s.emit("chatMessage",m.value);}
+s.on("chatMessage",d=>{
+ let div=document.createElement("div");
+ div.innerText=d.user+": "+d.text;
+ chat.appendChild(div);
+ chat.scrollTop=chat.scrollHeight;
+});
+</script></body></html>

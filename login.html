@@ -1,0 +1,12 @@
+<!DOCTYPE html><html><body style="background:black;color:gold;text-align:center">
+<h1>🦉 Login</h1>
+<input id="u"><br><br><input id="p" type="password"><br><br>
+<button onclick="login()">Login</button>
+<p id="msg"></p>
+<script src="/socket.io/socket.io.js"></script>
+<script>
+let s=io();
+function login(){s.emit("login",{user:u.value,pass:p.value});}
+s.on("loginSuccess",d=>{localStorage.setItem("auth","1");window.location="/";});
+s.on("loginFail",()=>msg.innerText="Wrong");
+</script></body></html>
