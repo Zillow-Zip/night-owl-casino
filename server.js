@@ -3,13 +3,18 @@ const path = require('path');
 
 const app = express();
 
-// Serve static files
-app.use(express.static(path.join(__dirname, '../public')));
+// Correct absolute path to public folder
+const publicPath = path.join(__dirname, '../public');
 
-// Load index.html on root
+app.use(express.static(publicPath));
+
+// Serve index.html
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, '../public/index.html'));
+  res.sendFile(path.join(publicPath, 'index.html'));
 });
 
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+});
