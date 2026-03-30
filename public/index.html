@@ -1,9 +1,19 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Night Owl Casino</title>
-</head>
-<body style="background:black; color:lime; text-align:center;">
-  <h1>🎰 Night Owl Casino is LIVE</h1>
-</body>
-</html>
+const express = require('express');
+const path = require('path');
+
+const app = express();
+
+// Absolute path fix (THIS is key)
+const publicPath = path.join(__dirname, '../public');
+
+app.use(express.static(publicPath));
+
+app.get('/', (req, res) => {
+  res.sendFile(path.join(publicPath, 'index.html'));
+});
+
+const PORT = process.env.PORT || 3000;
+
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+});
