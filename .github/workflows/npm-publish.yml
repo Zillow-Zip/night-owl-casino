@@ -1,11 +1,36 @@
 name: Node App Test
 
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
 on:
   push:
     branches: [ "main" ]
 
 jobs:
   build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Start server (with logs)
+        run: |
+          node server.js > server.log 2>&1 &
+          sleep 5
+          cat server.log
+
+      - name: Test server
+        run: curl http://localhost:3000
     runs-on: ubuntu-latest
 
     steps:
